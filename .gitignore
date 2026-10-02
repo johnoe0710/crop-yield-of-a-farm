@@ -1,0 +1,17 @@
+# Ignore local raw data and workbook copies
+*.csv
+*.xlsm
+*.xlsx
+
+# Office temp/lock files
+~$*
+*.tmp
+*.bak
+
+# Operating system clutter
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor settings
+.vscode/
