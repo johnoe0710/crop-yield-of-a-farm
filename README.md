@@ -1,23 +1,25 @@
 # Synthetic Agricultural Yield Analytics
 
-An Excel dashboard built on a synthetic dataset of 3,000 farm records. It reports total output, total area, yield per hectare and fertilizer rate, and compares them by farm scale, soil quality tier and rainfall zone.
+An Excel dashboard built on simulated farm performance data to explore relationships between output, area, soil quality, rainfall, fertilizer intensity, and farm scale.
 
-> **Data note:** The dataset is synthetic. It was generated from simulated farm and environmental features, not collected from real farms, and it has no location, date or crop-type field. Results describe this dataset only.
+> **Data note:** The public repository does not redistribute the underlying 3,000-row farm dataset or the Excel workbook. The original provenance and licensing of the raw rows could not be independently established, so this repository keeps the documentation, screenshots, and derived findings without publishing the raw file.
 
 ![Dashboard overview](images/dashboard-overview.png)
 
 ## What Was Done
 
-1. Loaded `crop_yield_data.csv` (3,000 rows, 6 fields) into Excel with Power Query.
-2. Checked the data: no missing values and no duplicate rows.
-3. Added derived fields: `farm_id`, `gross_yield_tons`, `yield_rate_tons_per_ha`, `fertilizer_kg_per_ha`, `farm_scale`, `soil_quality_tier`, `rainfall_zone`.
+1. Built the analysis from a local working copy of the farm-level data.
+2. Validated the source data for completeness and duplication checks.
+3. Added derived fields: `farm_id`, `gross_yield_tons`, `yield_rate_tons_per_ha`, `fertilizer_kg_per_ha`, `farm_scale`, `soil_quality_tier`, and `rainfall_zone`.
 4. Summarised the data in PivotTables.
-5. Built a dashboard with KPI cards, three charts and two slicers (soil quality tier, rainfall zone).
+5. Built a dashboard with KPI cards, three charts, and two slicers (soil quality tier, rainfall zone).
 6. Calculated the correlation between farm size and gross yield on the `Correlation_Check` sheet.
 
 ![Power Query editor](images/power-query-editor.png)
 
 ## Dataset
+
+The raw file `data/crop_yield_data.csv` is not redistributed in this public repository. The workbook in `dashboard/` is not published as a downloadable asset for the same reason. The field catalogue below describes the working schema used in the underlying analysis and the public-facing documentation.
 
 | Field | Range | Description |
 |---|---|---|
@@ -28,7 +30,7 @@ An Excel dashboard built on a synthetic dataset of 3,000 farm records. It report
 | `fertilizer_kg` | 100 – 3,000 | Fertilizer applied, kg per hectare |
 | `crop_yield` | 46 – 628 | Crop output per farm record |
 
-**Assumption:** The source describes `crop_yield` as tons per hectare. This project treats it as total output per farm record (`gross_yield_tons`) and derives yield per hectare by dividing by farm area. The assumption could not be confirmed against a real-world source because the data is synthetic.
+**Assumption:** The source describes `crop_yield` as tons per hectare. This project treats it as total output per farm record (`gross_yield_tons`) and derives yield per hectare by dividing by farm area. The assumption could not be confirmed against a real-world source because the raw data is not redistributed here and the original provenance could not be independently established.
 
 ## Derived Fields
 
@@ -74,10 +76,8 @@ An Excel dashboard built on a synthetic dataset of 3,000 farm records. It report
 
 ```
 ├── README.md
-├── data/
-│   └── crop_yield_data.csv
-├── dashboard/
-│   └── agric_environmental_yield_performance.xlsm
+├── data/                     (raw farm dataset excluded from public repository)
+├── dashboard/                (public-facing workbook withheld from publication)
 ├── docs/
 │   ├── 1_Data_Dictionary_and_Field_Catalog.docx
 │   ├── 2_Executive_Briefing_and_Business_Insights.docx
@@ -92,13 +92,13 @@ An Excel dashboard built on a synthetic dataset of 3,000 farm records. It report
 
 ## How to Use
 
-1. Open the workbook in `dashboard/` in Excel (desktop version).
-2. Use the **Soil Quality Tier** and **Rainfall Zone** slicers to filter the dashboard.
-3. The `Correlation_Check` sheet shows the correlation between farm size and gross yield.
-4. To refresh: **Data → Refresh All**, then refresh each PivotTable on `EDA_Analysis`.
-5. The data source path in Power Query is specific to the original computer. After downloading, edit the path in the query's Source step before refreshing.
+This public repository is documentation-first: reviewers can inspect the methodology, checks, and screenshots without accessing the original raw records. The original workbook and raw CSV were excluded because their provenance/licensing could not be independently verified.
 
-See `docs/` for the data dictionary, briefing, technical documentation and user manual.
+1. Review the dashboard screenshots and methodology in this repository.
+2. Use the documentation in `docs/` to understand the analysis flow and conclusions.
+3. Do not expect the raw rows to be regenerated from this public repository alone.
+
+See `docs/` for the data dictionary, briefing, technical documentation, and user manual.
 
 ## Tools
 
